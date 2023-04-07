@@ -1,0 +1,132 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Lista de Vehiculos</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+        <div class="col-md-12">
+            <label>Filtrar por:</label>
+        </div>
+        <div class="col-md-4">
+            <input type="text" [(ngModel)]="filtrarPor" (input)="consultaVehiculos()"/>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Filtrar por: filtro</h3>
+        </div>
+    </div>
+<br>
+<div class="row">
+    <div col="6">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Nuevo</button>
+    </div> 
+</div>
+<hr>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar auto</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="formControlID" class="col-form-label">Codigo:</label>
+                <input type="text" class="form-control" id="formControlID">
+            </div>
+            <div class="mb-3">
+                <label for="formControlMarca" class="col-form-label">Marca:</label>
+                <input type="text" class="form-control" id="formControlMarca">
+            </div>
+            <div class="mb-3">
+                <label for="formControlModelo" class="col-form-label">Modelo:</label>
+                <input type="text" class="form-control" id="formControlModelo">
+            </div>
+            <div class="mb-3">
+                <label for="formControlAnio" class="col-form-label">Año:</label>
+                <input type="text" class="form-control" id="formControlAnio">
+            </div>
+            <div class="mb-3">
+              <label for="formControlAnio" class="col-form-label">Calificación:</label>
+              <input type="text" class="form-control" id="formControlAnio">
+            </div>
+            <div class="mb-3">
+              <label for="formControlAnio" class="col-form-label">Imagen URL:</label>
+              <input type="text" class="form-control" id="formControlAnio">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="guardarVehiculo">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="row table-responsive">
+  <table class="table table-success table-striped table-hover">
+    <thead>
+      <tr>
+        <th colspan="6">
+          <button class="btn btn-primary" (click)="toogleImage()">
+              {{ muestraImagen? "Oculta" : "Muestra"}} imagen
+          </button>
+        </th>
+        <th>
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="basic-addon1">Filas: </span>
+            <select class="form-select form-select-sm" [(ngModel)]="rows" (change)="cambiosRows()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="500">500</option>
+            </select>
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th>Imagen</th>
+        <th>Codigo</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Año</th>
+        <th>Calificación</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehiculo of listaVehiculo">
+        <th>
+          <img class="img-thumbnail" [src]="vehiculo.foto" *ngIf="muestraImagen" 
+          placeholer="Imagen" 
+          [style.width.px] = "anchoImagen"
+          [style.margin.px] = "margenImagen"/>
+        </th>
+        <th>{{vehiculo.codigo}}</th>
+        <td>{{vehiculo.marca}}</td>
+        <td>{{vehiculo.modelo}}</td>
+        <td>{{vehiculo.anio}}</td>
+        <th>
+          <app-calificacion [calificacion]="vehiculo.calificacion" (select)="mostrarAlerta($event)"></app-calificacion>
+        </th>
+        <th>
+          <div class="btn-group" role="group" aria-label="Basic mixed styles examples">
+            <a class="btn btn-sm btn-primary" [routerLink]="[vehiculo.codigo]">Ver</a>
+            <button class="btn btn-sm btn-danger" (click)="eliminarVehiculo(vehiculo)">Eliminar</button>
+          </div>
+        </th>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7">
+          <app-paginacion-tabla [rows]="rows" [pages]="pages" (selectPage)="seleccionarPagina($event)"></app-paginacion-tabla>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+</div>
+</div>
