@@ -27,7 +27,6 @@ export class VehiculoComponent implements OnInit{
   page: number = 1;
 
   ngOnInit(){
-    //this.listaVehiculo = this.vehiculoService.getVehiculos();
     this.consultaVehiculos();
     this.formularioVehiculo = this.formBuilder.group({
       "marca": [null],
@@ -91,7 +90,6 @@ export class VehiculoComponent implements OnInit{
       this.consultaVehiculos();
 
     }
-
     cambiosRows(){
       this.page = 1;
       this.consultaVehiculos();

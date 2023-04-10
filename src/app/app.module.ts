@@ -8,10 +8,12 @@ import { VehiculoComponent } from './paginas/vehiculo/vehiculo.component';
 import { CalificacionComponent } from './componentes/calificacion/calificacion/calificacion.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PaginacionTablaComponent } from './componentes/paginacion-tabla/paginacion-tabla.component';
 import { VehiculoDetalleComponent } from './componentes/vehiculo-detalle/vehiculo-detalle.component';
 import { HomeComponent } from './paginas/home/home.component';
+import { UserInterceptor } from './interceptores/user-interceptor';
+import { ClienteComponent } from './paginas/cliente/cliente/cliente.component';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { HomeComponent } from './paginas/home/home.component';
     CalificacionComponent,
     PaginacionTablaComponent,
     VehiculoDetalleComponent,
-    HomeComponent
+    HomeComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,9 @@ import { HomeComponent } from './paginas/home/home.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

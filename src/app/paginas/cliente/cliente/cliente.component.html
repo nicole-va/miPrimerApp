@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-header">
+        <h4>Registro de cliente</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formularioCliente">
+        <div class="mb-3">
+            <label for="FormControlNombre" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="FormControlNombre" placeholder="" formControlName="nombre" required>
+          </div>
+        <div class="mb-3">
+            <label for="FormControlApellido" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="FormControlApellido" placeholder="" formControlName="apellido">
+          </div>
+        <div class="form-check" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="_contactar()">
+            <label class="form-check-label" for="flexCheckDefault">
+              ¿Desea Contacto?
+            </label>
+        </div>
+        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+        <div class="mb-3">
+            <label for="FormControlTelefono" class="form-label">Telefono</label>
+            <input type="text" class="form-control" id="FormControlTelefono" placeholder="" formControlName="telefono">
+          </div>
+        <div class="mb-3">
+            <label for="FormControlEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="FormControlEmail" placeholder="name@example.com" formControlName="email">
+        </div>
+    </div>
+    </form>
+    <div class="container text-center">
+        <button type="button" class="btn btn-secondary" (click)="guardarCliente()">Registrar Cliente</button>
+    </div>
+    </div>
+
+</div>

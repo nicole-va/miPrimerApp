@@ -20,8 +20,6 @@ export class VehiculoService {
 
   eliminarVehiculo(codigo:string){
     return this.http.delete<any>(this.baseUrl+'vehiculo/'+codigo);
-    // let index = this.listaAutos.findIndex((item) => item.codigo === codigo);
-    // this.listaAutos.splice(index, 1);
   }
 
   agregarVehiculo(vehiculo:Vehiculo){

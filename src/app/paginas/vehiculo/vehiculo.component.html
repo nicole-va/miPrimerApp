@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <h3>Filtrar por: filtro</h3>
+            <h3>Filtrar por: {{filtrarPor}}</h3>
         </div>
     </div>
 <br>
@@ -31,34 +31,37 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+        <form [formGroup]="formularioVehiculo">
             <div class="mb-3">
-                <label for="formControlID" class="col-form-label">Codigo:</label>
-                <input type="text" class="form-control" id="formControlID">
+                <label for="formControlCodigo" class="form-label">Codigo:</label>
+                <input type="text" class="form-control" id="formControlCodigo" formControlName="codigo">
             </div>
             <div class="mb-3">
-                <label for="formControlMarca" class="col-form-label">Marca:</label>
-                <input type="text" class="form-control" id="formControlMarca">
+                <label for="formControlMarca" class="form-label">Marca:</label>
+                <input type="text" class="form-control" id="formControlMarca" formControlName="marca" >
             </div>
             <div class="mb-3">
-                <label for="formControlModelo" class="col-form-label">Modelo:</label>
-                <input type="text" class="form-control" id="formControlModelo">
+                <label for="formControlModelo" class="form-label">Modelo:</label>
+                <input type="text" class="form-control" id="formControlModelo" formControlName="modelo">
             </div>
             <div class="mb-3">
-                <label for="formControlAnio" class="col-form-label">Año:</label>
-                <input type="text" class="form-control" id="formControlAnio">
+                <label for="formControlAnio" class="form-label">Año:</label>
+                <input type="text" class="form-control" id="formControlAnio" formControlName="anio">
             </div>
             <div class="mb-3">
-              <label for="formControlAnio" class="col-form-label">Calificación:</label>
-              <input type="text" class="form-control" id="formControlAnio">
+              <label for="formControlCalificacion" class="form-label">Calificación:</label>
+              <input type="text" class="form-control" id="formControlCalificacion" formControlName="calificacion">
             </div>
             <div class="mb-3">
-              <label for="formControlAnio" class="col-form-label">Imagen URL:</label>
-              <input type="text" class="form-control" id="formControlAnio">
+              <label for="formControlFoto" class="form-label">Imagen URL:</label>
+              <input type="text" class="form-control" id="formControlFoto" formControlName="foto">
             </div>
+        </form>
         </div>
+       
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="guardarVehiculo">Save changes</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="guardarVehiculo()">Save changes</button>
         </div>
       </div>
     </div>
